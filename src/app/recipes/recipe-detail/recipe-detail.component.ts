@@ -1,6 +1,8 @@
+import { Recipe } from './../recipe.model';
 import { 
   Component,
   OnInit,
+  Input,
 } from '@angular/core';
 
 @Component({
@@ -9,6 +11,8 @@ import {
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipesDetailComponent implements OnInit {
+
+  @Input() recipe: Recipe;
 
   constructor() { }
 

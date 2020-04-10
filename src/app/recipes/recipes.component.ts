@@ -1,3 +1,4 @@
+import { Recipe } from './recipe.model';
 import { Component,
   OnInit 
 } from '@angular/core';
@@ -8,6 +9,8 @@ import { Component,
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
+
+  selectedRecipe: Recipe;
 
   constructor() { }
 
