@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, 
+  OnInit 
+} from '@angular/core';
 import { Igredient } from '../shared/igredient.model';
 
 @Component({
