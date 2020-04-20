@@ -1,4 +1,4 @@
-export class Igredient {
+export class Ingredient {
 
     // public name: string;
     // public amount: number;
