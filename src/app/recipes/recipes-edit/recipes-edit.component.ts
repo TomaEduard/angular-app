@@ -21,7 +21,6 @@ export class RecipesEditComponent implements OnInit {
           // if id exist in params return true
           this.editMode = params['id'] != null;
           console.log('RecipesEditComponent - ngOnInit - verify if id exist in param: ' + this.editMode);
-          
         }
       )
   }
