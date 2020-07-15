@@ -1,3 +1,4 @@
+import { AuthComponent } from './auth/auth.component';
 import { RecipesEditComponent } from './recipes/recipes-edit/recipes-edit.component';
 import { RecipesDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
@@ -28,11 +29,13 @@ export const appRoutes: Routes = [
                 component: RecipesEditComponent,
                 resolve: [RecipesResolverService]
             },
-
-        ]
+        ],
     },
 
-    { path: 'shopping-list', component: ShoppingListComponent } // http://localhost:4200/shopping-list
+    { path: 'shopping-list', component: ShoppingListComponent }, // http://localhost:4200/shopping-list
+
+    { path: 'auth', component: AuthComponent }                  // http://localhost:4200/auth
+
 ];
 
 @NgModule({
