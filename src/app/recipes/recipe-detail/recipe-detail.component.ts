@@ -1,7 +1,7 @@
 import { Ingredient } from './../../shared/ingredient.model';
 import { RecipeService } from './../recipe.service';
 import { Recipe } from './../recipe.model';
-import { 
+import {
   Component,
   OnInit,
   Input,
@@ -28,18 +28,18 @@ export class RecipesDetailComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
+          this.id = +params.id;
           this.recipe = this.recipeService.getRecipe(this.id);
         }
-      )
+      );
   }
 
-  onAddShoppingList(){
+  onAddShoppingList() {
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
   }
 
   onEditRecipe() {
-    this.router.navigate(['edit'], {relativeTo: this.route})
+    this.router.navigate(['edit'], {relativeTo: this.route});
     // same
     // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route})
   }

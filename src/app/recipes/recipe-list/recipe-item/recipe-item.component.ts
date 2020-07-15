@@ -8,7 +8,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./recipe-item.component.css']
 })
 export class RecipesItemComponent implements OnInit {
-  
+
   @Input() recipe: Recipe;
   @Input() index: number;
 

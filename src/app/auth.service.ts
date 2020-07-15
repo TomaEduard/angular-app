@@ -5,19 +5,19 @@ export class AuthService {
 
     isAuthenticated() {
         const promise = new Promise(
+            // tslint:disable-next-line:no-shadowed-variable
             (resolve, rejects) => {
                 setTimeout(() => {
                     resolve(this.loggedIn);
-                }, 800)
+                }, 800);
             }
-        )
+        );
         return promise;
     }
 
     login() {
         this.loggedIn = true;
     }
-    
     logout() {
         this.loggedIn = false;
     }
