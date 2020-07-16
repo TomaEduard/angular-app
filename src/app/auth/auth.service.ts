@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { FIREBASE_WEB_API_KEY, API_KEY } from 'config';
 
 export interface AuthResponseData {
     kind: string;
@@ -16,12 +17,14 @@ export interface AuthResponseData {
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
+
     constructor(private http: HttpClient) {}
 
     signup(email: string, password: string) {
+        const endpoint = `${API_KEY}signupNewUser?key=${FIREBASE_WEB_API_KEY}`;
         return this.http
             .post<AuthResponseData>(
-                '',
+                endpoint,
                 {
                     // tslint:disable-next-line:object-literal-shorthand
                     email: email,
@@ -34,15 +37,17 @@ export class AuthService {
     }
 
     login(email: string, password: string) {
+        const endpoint = `${API_KEY}verifyPassword?key=${FIREBASE_WEB_API_KEY}`;
+        console.log('#endpoint: ' + endpoint);
         return this.http.post<AuthResponseData>(
-            '',
+            endpoint,
             {
                 // tslint:disable-next-line:object-literal-shorthand
                 email: email,
                 // tslint:disable-next-line:object-literal-shorthand
                 password: password,
                 returnSecureToken: true
-            }
+            },
         ).pipe(catchError(this.handleError));
     }
 
