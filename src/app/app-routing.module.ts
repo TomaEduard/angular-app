@@ -1,5 +1,4 @@
 import { AuthComponent } from './auth/auth.component';
-import { RecipesEditComponent } from './recipes/recipes-edit/recipes-edit.component';
 import { RecipesDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { NgModule } from '@angular/core';
@@ -18,7 +17,7 @@ export const appRoutes: Routes = [
         resolve: [RecipesResolverService],
         children: [
             { path: '', component: RecipeStartComponent },      // http://localhost:4200/recipes/
-            { path: 'new', component: RecipesEditComponent },   // http://localhost:4200/recipes/new
+            { path: 'new', component: RecipesDetailComponent },   // http://localhost:4200/recipes/new
             {
                 path: ':id',                                    // http://localhost:4200/recipes/id
                 component: RecipesDetailComponent,
@@ -26,7 +25,7 @@ export const appRoutes: Routes = [
             },
             {
                 path: ':id/edit',                               // http://localhost:4200/recipes/id/new
-                component: RecipesEditComponent,
+                component: RecipesDetailComponent,
                 resolve: [RecipesResolverService]
             },
         ],
