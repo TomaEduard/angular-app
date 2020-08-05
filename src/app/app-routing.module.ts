@@ -6,6 +6,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipesResolverService } from './recipes/recipes-resolver.service';
+import { AuthGuard } from './auth/auth.guard';
 
 export const appRoutes: Routes = [
 
@@ -14,7 +15,7 @@ export const appRoutes: Routes = [
     {
         path: 'recipes',                                        // http://localhost:4200/recipes
         component: RecipesComponent,
-        resolve: [RecipesResolverService],
+        canActivate: [AuthGuard],
         children: [
             { path: '', component: RecipeStartComponent },      // http://localhost:4200/recipes/
             { path: 'new', component: RecipesDetailComponent },   // http://localhost:4200/recipes/new
