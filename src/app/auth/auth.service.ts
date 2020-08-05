@@ -40,7 +40,7 @@ export class AuthService {
         }
       )
       // Error message conversion logic
-      // tap run some code with the data receive from the observablewithout stop/changing the response
+      // tap run some code with the data receive from the observable without stop/changing the response
       .pipe(
         catchError(this.handleError),
         tap(resData => {
@@ -82,6 +82,10 @@ export class AuthService {
           );
         })
       );
+  }
+
+  logout() {
+    this.user.next(null);
   }
 
   private handleAuthentication(

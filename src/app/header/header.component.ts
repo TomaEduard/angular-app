@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -15,14 +16,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataStorageService: DataStorageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.userSub = this.authService.user.subscribe(user => {
+      // this.isAuthenticated = !user;   adauga ? true : false;
+      // daca nu exista un user atunci valoarea este true(!user) --> ? true : false;
+
+      // this.isAuthenticated = !user ? false : true;   Echivalentul la !!user
       this.isAuthenticated = !!user;
-      console.log(!user);
-      console.log(!!user);
+      console.log('!user', !user);
+      console.log('!!user', !!user); // incepe cu false : true
     });
   }
 
@@ -32,6 +38,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onFetchData() {
     this.dataStorageService.fetchRecipes().subscribe();
+  }
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/auth']);
   }
 
   ngOnDestroy() {

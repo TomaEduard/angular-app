@@ -28,35 +28,27 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    return this.authService.user.pipe(
-      // I only take 1 value from that observable and after automatically unsubscribe
-      take(1),
-      // exhaustMap wait for first observable to complete
-      exhaustMap(user => {
         return this.http.get<Recipe[]>(
           'https://ng-recipe-book-15758.firebaseio.com/recipes.json',
-          {
-            params: new HttpParams().set('auth', user.token)
-          }
-        );
-      }),
-      map(recipes => {
-        // this map is a normal js map and allow us to transform the recipe intos an array
-        // it will be executed for every element of array recipes
-        // tslint:disable-next-line:no-shadowed-variable
-        return recipes.map(recipe => {
-          // if the element of array have ingredients it will be saved with his value
-          // if the element of array DON'T have ingredients we'll be create an empty array for it
-          return {
-            ...recipe,
-            ingredients: recipe.ingredients ? recipe.ingredients : []
-          };
-        });
-      }),
-      //  tab operator allow to execute some code without final operator
-      tap(recipes => {
-        this.recipeService.setRecipes(recipes);
-      })
-    );
+        )
+      .pipe(
+        map(recipes => {
+          // this map is a normal js map and allow us to transform the recipe intos an array
+          // it will be executed for every element of array recipes
+          // tslint:disable-next-line:no-shadowed-variable
+          return recipes.map(recipe => {
+            // if the element of array have ingredients it will be saved with his value
+            // if the element of array DON'T have ingredients we'll be create an empty array for it
+            return {
+              ...recipe,
+              ingredients: recipe.ingredients ? recipe.ingredients : []
+            };
+          });
+        }),
+        //  tab operator allow to execute some code without final operator
+        tap(recipes => {
+          this.recipeService.setRecipes(recipes);
+        })
+      );
   }
 }
